@@ -1,0 +1,51 @@
+= Scala Academy Exam Challange7
+
+*The content of the task:*
+
+Fix a function that should return the middle list element. In case of list having even number of elements the left middle element should be returned, e.g. [1,2,3,4] should return 2
+Include algorithm explanation
+
+----
+Code:
+
+def findMiddleElement[T](xs: List[T]): Option[T] = {
+@tailrec
+def loop(ys: List[T], acc: List[T], cnt: Int): Option[T] = {
+ys match {
+case head :: tail if cnt % 2 == 0 => loop(tail, acc.tail, cnt + 1)
+case _ :: tail => loop(tail, acc, cnt + 1)
+case Nil => acc.headOption
+}
+}
+
+    loop(xs, xs, 0)
+}
+----
+
+:library: Asciidoctor
+:idprefix:
+:numbered:
+:imagesdir: images
+:experimental:
+:toc: preamble
+:toc-title: pass:[<h3>Table od contents</h3>]
+ifdef::env-github[]
+:note-caption: :information_source:
+:tip-caption: :bulb:
+endif::[]
+
+*Dependencies*
+
+To run this app you need IDE(i use InteliJ).
+
+You need also add this to your build.sbt if you want to test it:
+
+----
+libraryDependencies += "org.scalactic" %% "scalactic" % "3.2.12"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.12" % "test"
+----
+
+*How to run?*
+
+Clone this repository.
+Open Main object and run application.
